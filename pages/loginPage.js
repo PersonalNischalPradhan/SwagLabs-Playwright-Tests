@@ -12,16 +12,10 @@ class LoginPage {
     }
   
     async getErrorMessage() {
-        const errorMessageLocator = this.commandPage.loginErrorText; // Use the defined selector
+        const errorMessageLocator = this.commandPage.loginErrorText;
         const errorMessage = this.page.locator(errorMessageLocator);
-        
-        // Wait for the error message to be visible
         await errorMessage.waitFor({ state: 'visible' });
-        
-        // Get the text content of the error message
         const errorMessageText = await errorMessage.textContent();
-        
-        // Return the trimmed text to avoid extra spaces
         return errorMessageText.trim();
     }
   }

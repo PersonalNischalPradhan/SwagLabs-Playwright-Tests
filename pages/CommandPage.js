@@ -18,8 +18,11 @@ class CommandPage {
     this.loginErrorText = "h3[data-test='error']";
 
     // Home Page Selectors
-    this.productListerLink = '.inventory_item_name';
+    this.inventoryItemName = '.inventory_item_name';
     this.inventoryList = '.inventory_list';
+    this.inventoryItemPrice='.inventory_item_price';
+    this.productSortDropdown='.product_sort_container';
+    this.cartItemCountLocator = '.fa-layers-counter.shopping_cart_badge';
 
     // Product Lister & Product Details Page Selectors
     this.productItem = '.inventory_item';

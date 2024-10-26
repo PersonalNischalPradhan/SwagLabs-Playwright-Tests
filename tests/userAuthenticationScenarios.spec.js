@@ -5,7 +5,6 @@ const CommandPage = require('../pages/CommandPage');
 test.describe('SWAG LABS Application - Login Scenarios', () => {
 
     test.beforeEach(async ({ page }) => {
-        // Initialize CommandPage before each test and navigate to the login URL
         const commandPage = new CommandPage(page);
         await page.goto(loginData.urls.swaglabsUrl);
     });
@@ -18,11 +17,9 @@ test.describe('SWAG LABS Application - Login Scenarios', () => {
         const commandPage = new CommandPage(page);
         await commandPage.loginPage.login(loginData.account.usernames[0], loginData.account.password);
 
-        // Add assertions to verify successful login
+        // Verify successful login and check for presence of product page or dashboard
         const pageTitle = await page.title();
         expect(pageTitle).toBe(loginData.titles.swaglabs);
-
-        // Additional validation, e.g., check for presence of product page or dashboard
         const isLoggedIn = await page.locator(commandPage.inventoryList).isVisible();
         expect(isLoggedIn).toBeTruthy();
     });
@@ -35,12 +32,9 @@ test.describe('SWAG LABS Application - Login Scenarios', () => {
         const commandPage = new CommandPage(page);
         await commandPage.loginPage.login(loginData.account.usernames[1], loginData.account.password);
 
-        // Add assertions to verify successful login
+        // Verify successful login and check for presence of product page or dashboard
         const pageTitle = await page.title();
         expect(pageTitle).toBe(loginData.titles.swaglabs);
-
-
-        // Additional validation, e.g., check for presence of product page or dashboard
         const isLoggedIn = await page.locator(commandPage.inventoryList).isVisible();
         expect(isLoggedIn).toBeTruthy();
     });
@@ -53,11 +47,9 @@ test.describe('SWAG LABS Application - Login Scenarios', () => {
         const commandPage = new CommandPage(page);
         await commandPage.loginPage.login(loginData.account.usernames[3], loginData.account.password);
 
-        // Add assertions to verify successful login
+        // Verify successful login and check for presence of product page or dashboard
         const pageTitle = await page.title();
         expect(pageTitle).toBe(loginData.titles.swaglabs);
-
-        // Additional validation, e.g., check for presence of product page or dashboard
         const isLoggedIn = await page.locator(commandPage.inventoryList).isVisible();
         expect(isLoggedIn).toBeTruthy();
     });
