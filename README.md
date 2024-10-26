@@ -29,4 +29,4 @@ To get started, clone the repository and install the necessary dependencies:
 ```bash
 git clone https://github.com/PersonalNischalPradhan/SwagLabs-Playwright-Tests.git
 cd SwagLabs-Playwright-Tests
-npm install
+npm install  #if this is not done then you will get MODULE_NOT_FOUND 
