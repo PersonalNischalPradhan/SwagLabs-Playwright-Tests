@@ -3,10 +3,10 @@ name: SwagLabs Playwright Tests
 on:
   push:
     branches:
-      - dev
+      - main
   pull_request:
     branches:
-      - dev
+      - main
   workflow_dispatch:
 
 jobs:
@@ -28,13 +28,12 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install
 
-      - name: Run Playwright tests in headless mode
-        id: run-tests
+      - name: Run Playwright tests
         run: |
-          npx playwright test --headless || echo "Tests failed, review logs."
+          CI=true npx playwright test || echo "Tests failed, review logs."
           
           # Check if the report directory exists
-          if [ -d playwright-report ]; then
+          if [ -d test-results ]; then
             echo "artifact_exists=true" >> $GITHUB_ENV
           else
             echo "artifact_exists=false" >> $GITHUB_ENV
@@ -45,4 +44,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: SwagLabs-Playwright-Test-Artifacts
-          path: playwright-report/
+          path: test-results/
