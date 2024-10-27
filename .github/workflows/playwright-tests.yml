@@ -14,30 +14,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Check out the code from the repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: Set up Node.js with the updated Node 20 version
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
-      # Step 3: Install dependencies (including Playwright)
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Install Playwright browsers
       - name: Install Playwright Browsers
         run: npx playwright install
 
-      # Step 5: Run the Playwright tests
-      - name: Run Playwright tests
+      - name: Run Playwright tests in headless mode
         id: run-tests
         run: |
-          npx playwright test || echo "Tests failed, review logs."
-
+          npx playwright test --headless || echo "Tests failed, review logs."
+          
           # Check if the report directory exists
           if [ -d playwright-report ]; then
             echo "artifact_exists=true" >> $GITHUB_ENV
@@ -45,7 +40,6 @@ jobs:
             echo "artifact_exists=false" >> $GITHUB_ENV
           fi
 
-      # Step 6: Upload test artifacts only if they exist and there’s a failure
       - name: Upload Test Artifacts
         if: failure() && env.artifact_exists == 'true'
         uses: actions/upload-artifact@v3
