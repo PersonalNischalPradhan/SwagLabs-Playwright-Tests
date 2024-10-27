@@ -23,7 +23,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'    # Specify Node.js version required
+          node-version: '20'    #changed to 20 as 16 failed in github
 
       # Step 3: Install dependencies (including Playwright)
       - name: Install dependencies
