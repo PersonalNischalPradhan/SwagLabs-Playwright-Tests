@@ -1,0 +1,46 @@
+name: SwagLabs Playwright Tests   
+
+# Trigger on push to dev or on pull requests targeting main
+on:
+  push:
+    branches:
+      - dev
+  pull_request:
+    branches:
+      - dev
+  workflow_dispatch:    # Enables manual trigger from GitHub Actions
+
+jobs:
+  test:
+    runs-on: ubuntu-latest      # Run the job on the latest Ubuntu version
+
+    steps:
+      # Step 1: Check out the code from the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'    # Specify Node.js version required
+
+      # Step 3: Install dependencies (including Playwright)
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Install Playwright browsers
+      - name: Install Playwright Browsers
+        run: npx playwright install
+
+      # Step 5: Run the Playwright tests
+      - name: Run Playwright tests
+        run: npx playwright test
+
+      # Step 6 : Upload test artifacts (e.g., screenshots, videos) if tests fail
+      - name: Upload Test Artifacts
+        if: failure()    # Run only if tests fail
+        uses: actions/upload-artifact@v3
+        with:
+          name: SwagLabs-Playwright-Test-Artifacts  # Updated artifact name to reflect project name
+          path: playwright-report/                  # Directory where Playwright saves reports

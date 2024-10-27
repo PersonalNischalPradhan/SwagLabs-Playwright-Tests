@@ -14,7 +14,7 @@ module.exports = defineConfig({
     headless: false, // Optional: run browser in non-headless mode
     viewport: { width: 1280, height: 720 },
     screenshot: 'only-on-failure', // Capture screenshots on failure
-    video: 'on', // Record video of test execution
+    video: 'retain-on-failure',   // Captures videos only on test failures
   },
   reporter: [
     ['html', { outputFolder: 'test-results', open: 'never' }], // Generates HTML reports
