@@ -31,20 +31,25 @@ Before you begin, ensure you have the following installed:
 To get started, clone the repository and install the necessary dependencies:
 
 ```bash
+
 git clone https://github.com/PersonalNischalPradhan/SwagLabs-Playwright-Tests.git
 cd SwagLabs-Playwright-Tests
 npm install  #if this is not done then you will get MODULE_NOT_FOUND 
-
-
+```
 Usage
+```bash
+
 To run your tests, use the command below. This will execute all tests defined in the tests folder.
+
 npx playwright test
 
-
+```
 Running Tests
-
 Running Tests Locally
+```bash
+
 To run tests locally, you can execute the following command in your terminal:
+
 
 npx playwright test
 
@@ -60,7 +65,9 @@ In case you want to see the browser interactions, you can run:
 
 npx playwright test --headed
 
+```
 Running Tests Automatically on GitHub
+```bash
 
 This project is set up to automatically run tests whenever changes are pushed to the dev branch or a pull request is made. 
 
@@ -79,10 +86,13 @@ The tests will run automatically on:
 Any push to the dev branch.
 Any pull request targeting the dev branch.
 
+```
 Running Tests Manually on GitHub
+```bash
 
 You can also manually trigger the workflow from the GitHub Actions tab.
 
 Viewing the Results: After the tests run, you can check the GitHub Actions page to see the test results. If tests fail, the workflow will show error logs, and you can download the HTML report from the artifacts section.
 
-FinalNote : Please feel free to submit a pull request or open an issue.
+```
+FinalNote : Please feel free to submit a pull request or shout for any issue.
