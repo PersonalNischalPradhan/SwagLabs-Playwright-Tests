@@ -19,19 +19,6 @@ class ProductDetailsPage {
     async addToCart() {
         await this.page.click(this.commandPage.addToCartButton);
     }
-    async addAllProductsToCart() {
-        const products = await this.page.$$(this.commandPage.productItem);
-        for (let i = 0; i < products.length; i++) {
-            const product = products[i]; // Get the product at index i
-            const addToCartButton = await product.$(this.commandPage.addToCartButton);
-            if (addToCartButton) {
-                await addToCartButton.click();
-                await this.page.waitForTimeout(200);
-            }
-        }
-    }
-
-
 
     // Method to click on the basket icon
     async clickOnBasketIcon() {

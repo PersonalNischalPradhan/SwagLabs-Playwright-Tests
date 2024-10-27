@@ -21,8 +21,8 @@ test.describe('E2E order flow with various users ', () => {
         await commandPage.productDetailsPage.clickOnBasketIcon();
         await commandPage.productDetailsPage.proceedToCheckout();
         await commandPage.checkoutPage.checkout();
-        await commandPage.CheckoutOverviewPage.checkoutOverviewBtnClick();
-        const confirmationText = await commandPage.OrderConfirmationPage.getOrderConfirmationText();
+        await commandPage.checkoutOverviewPage.checkoutOverviewBtnClick();
+        const confirmationText = await commandPage.orderConfirmationPage.getOrderConfirmationText();
         console.log('Confirmation Text : ' + confirmationText);
         expect(confirmationText).toContain(checkoutData.orderConfirmationMessage.confirmation);
     });
@@ -32,14 +32,14 @@ test.describe('E2E order flow with various users ', () => {
    */
     test('standard user should add all products to cart and place order successfully', async ({ page }) => {
         await commandPage.loginPage.login(loginData.account.usernames[0], loginData.account.password);
-        await commandPage.productDetailsPage.addAllProductsToCart(); 
+        await commandPage.homePage.addAllProductsToCart(); 
         const cartItemCount = await commandPage.homePage.getCartItemCount();
         expect(parseInt(cartItemCount)).toBe(6); // Verify that all 6 products are added
-        await commandPage.productDetailsPage.clickOnBasketIcon();
-        await commandPage.productDetailsPage.proceedToCheckout();
+        await commandPage.yourCartPage.clickOnBasketIcon();
+        await commandPage.yourCartPage.proceedToCheckout();
         await commandPage.checkoutPage.checkout();
-        await commandPage.CheckoutOverviewPage.checkoutOverviewBtnClick();
-        const confirmationText = await commandPage.OrderConfirmationPage.getOrderConfirmationText();
+        await commandPage.checkoutOverviewPage.checkoutOverviewBtnClick();
+        const confirmationText = await commandPage.orderConfirmationPage.getOrderConfirmationText();
         console.log('Confirmation Text : ' + confirmationText);
         expect(confirmationText).toContain(checkoutData.orderConfirmationMessage.confirmation);
     });
@@ -50,14 +50,14 @@ test.describe('E2E order flow with various users ', () => {
    */
     test('performance glitch user should add all products to cart and place order successfully', async ({ page }) => {
         await commandPage.loginPage.login(loginData.account.usernames[3], loginData.account.password);
-        await commandPage.productDetailsPage.addAllProductsToCart();
+        await commandPage.homePage.addAllProductsToCart();
         const cartItemCount = await commandPage.homePage.getCartItemCount();
         expect(parseInt(cartItemCount)).toBe(6); // Verify that all 6 products are added
-        await commandPage.productDetailsPage.clickOnBasketIcon();
-        await commandPage.productDetailsPage.proceedToCheckout();
+        await commandPage.yourCartPage.clickOnBasketIcon();
+        await commandPage.yourCartPage.proceedToCheckout();
         await commandPage.checkoutPage.checkout();
-        await commandPage.CheckoutOverviewPage.checkoutOverviewBtnClick();
-        const confirmationText = await commandPage.OrderConfirmationPage.getOrderConfirmationText();
+        await commandPage.checkoutOverviewPage.checkoutOverviewBtnClick();
+        const confirmationText = await commandPage.orderConfirmationPage.getOrderConfirmationText();
         console.log('Confirmation Text : ' + confirmationText);
         expect(confirmationText).toContain(checkoutData.orderConfirmationMessage.confirmation);
     });
@@ -67,14 +67,14 @@ test.describe('E2E order flow with various users ', () => {
     */
     test('problem user should add all products to cart and place order successfully', async ({ page }) => {
         await commandPage.loginPage.login(loginData.account.usernames[1], loginData.account.password);
-        await commandPage.productDetailsPage.addAllProductsToCart(); 
+        await commandPage.homePage.addAllProductsToCart(); 
         const cartItemCount = await commandPage.homePage.getCartItemCount();
         expect(parseInt(cartItemCount)).toBe(6); // Verify that all 6 products are added
-        await commandPage.productDetailsPage.clickOnBasketIcon();
-        await commandPage.productDetailsPage.proceedToCheckout();
+        await commandPage.yourCartPage.clickOnBasketIcon();
+        await commandPage.yourCartPage.proceedToCheckout();
         await commandPage.checkoutPage.checkout();
-        await commandPage.CheckoutOverviewPage.checkoutOverviewBtnClick();
-        const confirmationText = await commandPage.OrderConfirmationPage.getOrderConfirmationText();
+        await commandPage.checkoutOverviewPage.checkoutOverviewBtnClick();
+        const confirmationText = await commandPage.orderConfirmationPage.getOrderConfirmationText();
         console.log('Confirmation Text : ' + confirmationText);
         expect(confirmationText).toContain(checkoutData.orderConfirmationMessage.confirmation);
     });

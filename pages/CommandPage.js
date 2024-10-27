@@ -4,6 +4,7 @@ const ProductDetailsPage = require('./productDetailsPage');
 const CheckoutPage = require('./checkoutPage');
 const CheckoutOverviewPage = require('./checkoutOverviewPage');
 const OrderConfirmationPage = require('./orderConfirmationPage');
+const YourCartPage = require('./yourCartPage');
 
 class CommandPage {
   constructor(page) {
@@ -17,6 +18,9 @@ class CommandPage {
     this.loginButton = '#login-button';
     this.loginErrorText = "h3[data-test='error']";
 
+    //Your Cart Page
+    this.proceedToCheckoutButton = '.checkout_button';
+
     // Home Page Selectors
     this.inventoryItemName = '.inventory_item_name';
     this.inventoryList = '.inventory_list';
@@ -28,7 +32,7 @@ class CommandPage {
     this.productItem = '.inventory_item';
     this.addToCartButton = '.btn_primary';
     this.basketIcon = 'svg.fa-shopping-cart'
-    this.proceedToCheckoutButton = '.checkout_button';
+
 
     // Checkout Page Selectors
     this.paymentDetailsFN = '#first-name';
@@ -48,8 +52,9 @@ class CommandPage {
     this.homePage = new HomePage(page, this);
     this.productDetailsPage = new ProductDetailsPage(page, this);
     this.checkoutPage = new CheckoutPage(page, this);
-    this.CheckoutOverviewPage = new CheckoutOverviewPage(page, this);
-    this.OrderConfirmationPage = new OrderConfirmationPage(page, this);
+    this.checkoutOverviewPage = new CheckoutOverviewPage(page, this);
+    this.orderConfirmationPage = new OrderConfirmationPage(page, this);
+    this.yourCartPage = new YourCartPage(page, this);
   }
 }
 
