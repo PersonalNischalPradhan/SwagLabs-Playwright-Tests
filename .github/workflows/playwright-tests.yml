@@ -41,14 +41,14 @@ jobs:
 
       - name: Upload Test Artifacts
         if: env.artifact_exists == 'true'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: SwagLabs-Playwright-Test-Artifacts
           path: test-results/
           
       - name: Upload HTML Report
         if: env.artifact_exists == 'true'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: SwagLabs-Playwright-HTML-Report
           path: playwright-report/
