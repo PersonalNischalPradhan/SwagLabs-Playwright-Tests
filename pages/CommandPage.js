@@ -10,7 +10,7 @@ class CommandPage {
   constructor(page) {
     this.page = page;
 
-    // Centralized WebElement Selectors
+    // All the WebElement Selectors are here
 
     // Login Page Selectors
     this.usernameInput = '#user-name';
@@ -47,7 +47,7 @@ class CommandPage {
     // Order Confirmation Page Selectors
     this.orderConfirmationMessage = '.complete-header';
 
-    // Initialize action files
+    // Initialize the pages here so that it can be used thorugh the code
     this.loginPage = new LoginPage(page, this);
     this.homePage = new HomePage(page, this);
     this.productDetailsPage = new ProductDetailsPage(page, this);

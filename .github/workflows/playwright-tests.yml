@@ -30,18 +30,25 @@ jobs:
 
       - name: Run Playwright tests
         run: |
-          CI=true npx playwright test || echo "Tests failed, review logs."
-          
-          # Check if the report directory exists
-          if [ -d test-results ]; then
+          CI=true npx playwright test --reporter=html || echo "Tests failed, review logs."
+
+          # Always check if the report directory exists
+          if [ -d playwright-report ]; then
             echo "artifact_exists=true" >> $GITHUB_ENV
           else
             echo "artifact_exists=false" >> $GITHUB_ENV
           fi
 
       - name: Upload Test Artifacts
-        if: failure() && env.artifact_exists == 'true'
+        if: env.artifact_exists == 'true'
         uses: actions/upload-artifact@v3
         with:
           name: SwagLabs-Playwright-Test-Artifacts
           path: test-results/
+          
+      - name: Upload HTML Report
+        if: env.artifact_exists == 'true'
+        uses: actions/upload-artifact@v3
+        with:
+          name: SwagLabs-Playwright-HTML-Report
+          path: playwright-report/

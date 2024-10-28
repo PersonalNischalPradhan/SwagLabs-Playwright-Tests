@@ -2,7 +2,7 @@
 class YourCartPage {
     constructor(page, commandPage) {
         this.page = page;
-        this.commandPage = commandPage; // Reference to CommandPage
+        this.commandPage = commandPage;
     }
 
     // Method to click on the basket icon
@@ -14,6 +14,12 @@ class YourCartPage {
     async proceedToCheckout() {
         await this.page.click(this.commandPage.proceedToCheckoutButton);
     }
+    //Method to get price from your cart page
+    async getPriceFromYourCartPage() {
+        const productPriceOnYourCartPage = await this.page.locator('.inventory_item_price').textContent();
+        return productPriceOnYourCartPage.replace('$', '');
+    }
+
 }
 
 module.exports = YourCartPage;

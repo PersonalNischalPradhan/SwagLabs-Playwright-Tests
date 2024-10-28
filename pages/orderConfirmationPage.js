@@ -1,7 +1,7 @@
 class OrderConfirmationPage {
     constructor(page, commandPage) {
       this.page = page;
-      this.commandPage = commandPage; // Reference to CommandPage
+      this.commandPage = commandPage; 
     }
 
   
