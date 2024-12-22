@@ -1,0 +1,191 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Accessibility Violations Report - checkout-page</title>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                }
+                .container {
+                    display: flex;
+                    justify-content: space-evenly; /* Adjust space between the charts */
+                    margin-bottom: 20px;
+                }
+                .chart-container {
+                    width: 40%;  /* Adjust width to fit smaller charts */
+                    display: flex;
+                    justify-content: center;
+                }
+                .status-bar {
+                    width: 30%;
+                    padding-left: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                }
+                .status-bar div {
+                    margin: 10px 0;
+                    padding: 5px;
+                    display: flex;
+                    align-items: center;
+                }
+                .color-box {
+                    width: 20px;
+                    height: 20px;
+                    margin-right: 10px;
+                }
+                h2 {
+                    text-align: center;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Accessibility Violations Report - checkout-page</h1>
+            <p>Total Violations: 7</p>
+            <ul>
+                
+                        <li>
+                            <strong>1. Ensure every HTML document has a lang attribute</strong>
+                            <p>Impact: serious</p>
+                            <p>Help URL: <a href="https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI" target="_blank">https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI</a></p>
+                            <p>Nodes affected: 1</p>
+                        </li>
+                    
+                        <li>
+                            <strong>2. Ensure <img> elements have alternative text or a role of none or presentation</strong>
+                            <p>Impact: critical</p>
+                            <p>Help URL: <a href="https://dequeuniversity.com/rules/axe/4.10/image-alt?application=axeAPI" target="_blank">https://dequeuniversity.com/rules/axe/4.10/image-alt?application=axeAPI</a></p>
+                            <p>Nodes affected: 1</p>
+                        </li>
+                    
+                        <li>
+                            <strong>3. Ensure the document has a main landmark</strong>
+                            <p>Impact: moderate</p>
+                            <p>Help URL: <a href="https://dequeuniversity.com/rules/axe/4.10/landmark-one-main?application=axeAPI" target="_blank">https://dequeuniversity.com/rules/axe/4.10/landmark-one-main?application=axeAPI</a></p>
+                            <p>Nodes affected: 1</p>
+                        </li>
+                    
+                        <li>
+                            <strong>4. Ensure links have discernible text</strong>
+                            <p>Impact: serious</p>
+                            <p>Help URL: <a href="https://dequeuniversity.com/rules/axe/4.10/link-name?application=axeAPI" target="_blank">https://dequeuniversity.com/rules/axe/4.10/link-name?application=axeAPI</a></p>
+                            <p>Nodes affected: 1</p>
+                        </li>
+                    
+                        <li>
+                            <strong>5. Ensure <meta name="viewport"> does not disable text scaling and zooming</strong>
+                            <p>Impact: critical</p>
+                            <p>Help URL: <a href="https://dequeuniversity.com/rules/axe/4.10/meta-viewport?application=axeAPI" target="_blank">https://dequeuniversity.com/rules/axe/4.10/meta-viewport?application=axeAPI</a></p>
+                            <p>Nodes affected: 1</p>
+                        </li>
+                    
+                        <li>
+                            <strong>6. Ensure that the page, or at least one of its frames contains a level-one heading</strong>
+                            <p>Impact: moderate</p>
+                            <p>Help URL: <a href="https://dequeuniversity.com/rules/axe/4.10/page-has-heading-one?application=axeAPI" target="_blank">https://dequeuniversity.com/rules/axe/4.10/page-has-heading-one?application=axeAPI</a></p>
+                            <p>Nodes affected: 1</p>
+                        </li>
+                    
+                        <li>
+                            <strong>7. Ensure all page content is contained by landmarks</strong>
+                            <p>Impact: moderate</p>
+                            <p>Help URL: <a href="https://dequeuniversity.com/rules/axe/4.10/region?application=axeAPI" target="_blank">https://dequeuniversity.com/rules/axe/4.10/region?application=axeAPI</a></p>
+                            <p>Nodes affected: 3</p>
+                        </li>
+                    
+            </ul>
+
+            <!-- Pie Chart and Bar Graph Container -->
+            <div class="container">
+                <!-- Pie Chart for severity distribution -->
+                <div class="chart-container">
+                    <canvas id="severityChart" width="150" height="150"></canvas>
+                </div>
+
+                <!-- Bar Graph for severity distribution -->
+                <div class="chart-container">
+                    <canvas id="barGraph" width="150" height="150"></canvas>
+                </div>
+            </div>
+
+            <!-- Status Bar with labels -->
+            <div class="status-bar">
+                <h3>Severity Status</h3>
+                <div><div class="color-box" style="background-color: red;"></div> Critical</div>
+                <div><div class="color-box" style="background-color: yellow;"></div> Serious</div>
+                <div><div class="color-box" style="background-color: lightblue;"></div> Moderate</div>
+                <div><div class="color-box" style="background-color: lightgreen;"></div> Minor</div>
+            </div>
+
+            <script>
+                // Pie Chart
+                const pieCtx = document.getElementById('severityChart').getContext('2d');
+                const severityPieChart = new Chart(pieCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Critical', 'Serious', 'Moderate', 'Minor'],
+                        datasets: [{
+                            label: 'Severity Distribution',
+                            data: [2, 2, 3, 0],
+                            backgroundColor: ['red', 'yellow', 'lightblue', 'lightgreen'],
+                            borderColor: ['#cccccc', '#b3b3b3', '#99b3b3', '#99cc99'],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(tooltipItem) {
+                                        return tooltipItem.label + ': ' + tooltipItem.raw + ' violations';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // Bar Graph
+                const barCtx = document.getElementById('barGraph').getContext('2d');
+                const severityBarGraph = new Chart(barCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Critical', 'Serious', 'Moderate', 'Minor'],
+                        datasets: [{
+                            label: 'Severity Count',
+                            data: [2, 2, 3, 0],
+                            backgroundColor: ['red', 'yellow', 'lightblue', 'lightgreen'],
+                            borderColor: ['#cccccc', '#b3b3b3', '#99b3b3', '#99cc99'],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            x: {
+                                beginAtZero: true
+                            },
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            </script>
+        </body>
+        </html>
+    
