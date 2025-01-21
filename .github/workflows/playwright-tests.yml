@@ -1,4 +1,4 @@
-name: SwagLabs Playwright Tests
+name: AIT Playwright Tests
 
 on:
   push:
@@ -22,16 +22,22 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install dependencies
-        run: npm install
+      - name: Clear npm cache
+        run: npm cache clean --force
 
+      - name: Install dependencies
+        run: npm install --unsafe-perm=true --allow-root
+
+      # Install Playwright directly through npm instead of npx
       - name: Install Playwright Browsers
-        run: npx playwright install
+        run: |
+          npm install playwright
+          npx playwright install
 
       - name: Run Playwright tests
         run: |
-          CI=true npx playwright test --reporter=html || echo "Tests failed, review logs."
-
+          CI=true npx playwright test --reporter=html,allure-playwright || echo "Tests failed, review logs."
+          
           # Always check if the report directory exists
           if [ -d playwright-report ]; then
             echo "artifact_exists=true" >> $GITHUB_ENV
@@ -43,12 +49,37 @@ jobs:
         if: env.artifact_exists == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: SwagLabs-Playwright-Test-Artifacts
+          name: AIT-Playwright-Test-Artifacts
           path: test-results/
-          
+
       - name: Upload HTML Report
         if: env.artifact_exists == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: SwagLabs-Playwright-HTML-Report
+          name: AIT-Playwright-HTML-Report
           path: playwright-report/
+
+      - name: Upload Allure Results
+        if: env.artifact_exists == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: AIT-Playwright-Allure-Results
+          path: test-results/allure-results/
+
+      - name: Run Accessibility Tests
+        run: |
+          CI=true npx playwright test --reporter=html,allure-playwright --project=Chromium --grep "Accessibility Testing Suite" || echo "Accessibility tests failed, review logs."
+
+          # Always check if the report directory exists for accessibility tests
+          if [ -d accessibility-reports ]; then
+            echo "artifact_exists=true" >> $GITHUB_ENV
+          else
+            echo "artifact_exists=false" >> $GITHUB_ENV
+          fi
+
+      - name: Upload Accessibility Reports
+        if: env.artifact_exists == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: AIT-Playwright-Accessibility-Reports
+          path: reports/

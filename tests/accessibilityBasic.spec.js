@@ -6,6 +6,7 @@ const loginData = require('../properties/loginProperties');  // Assuming loginDa
 const urlData = require('../properties/accessibilityUrlsProperties');  // Assuming urlData has necessary URL
 
 let allViolations = []; // Collect all violations globally
+
 // Generate HTML report function with Pie Chart, Bar Graph, and Status Bar
 async function generateHtmlReport(violations, reportTitle) {
     const severityCounts = {
@@ -202,8 +203,6 @@ async function generateHtmlReport(violations, reportTitle) {
     console.log(`HTML report generated: ${reportPath}`);
 }
 
-
-
 test.describe('Accessibility Testing Suite', () => {
     test.only('should check accessibility on the cart page', async ({ page }) => {
         await page.goto(urlData.urls.cartUrl, { waitUntil: 'load' });
@@ -214,6 +213,9 @@ test.describe('Accessibility Testing Suite', () => {
 
         // Add violations to the global list
         allViolations.push(...violations);
+
+        // Fail the test if there are violations
+        expect(violations.length).toBe(0);  // This ensures that if violations are found, the test fails
 
         // Generate individual report
         await generateHtmlReport(violations, 'cart-page');
@@ -228,6 +230,9 @@ test.describe('Accessibility Testing Suite', () => {
 
         // Add violations to the global list
         allViolations.push(...violations);
+
+        // Fail the test if there are violations
+        expect(violations.length).toBe(0);  // This ensures that if violations are found, the test fails
 
         // Generate individual report
         await generateHtmlReport(violations, 'checkout-page');
